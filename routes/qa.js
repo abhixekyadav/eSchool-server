@@ -5,7 +5,7 @@ const router = express.Router();
 // middlewares
 import { requireSignin } from "../middlewares";
 // controller
-const {
+import {
   create,
   lessonQa,
   updateLessonQa,
@@ -22,7 +22,7 @@ const {
   deleteLessonQaByInstructor,
   markQaResolvedByInstructor,
   markQaUnresolvedByInstructor,
-} = require("../controllers/qa");
+} from "../controllers/qa";
 
 // qa for user dashboard
 router.get("/user/qas", requireSignin, getUserQas);

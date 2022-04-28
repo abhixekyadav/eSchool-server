@@ -6,7 +6,7 @@ const router = express.Router();
 // middlewares
 import { requireSignin, isAuthor, isAdmin } from "../middlewares";
 // controller
-const {
+import {
   uploadImage,
   create,
   list,
@@ -22,7 +22,7 @@ const {
   prevPost,
   nextPost,
   listForAdmin,
-} = require("../controllers/post");
+} from "../controllers/post";
 
 // image
 router.post("/post/upload-image", requireSignin, isAuthor, uploadImage);

@@ -5,7 +5,7 @@ const router = express.Router();
 // middlewares
 import { requireSignin } from "../middlewares";
 // controller
-const { supportEmail } = require("../controllers/email");
+import { supportEmail } from "../controllers/email";
 
 router.post("/contact-support", requireSignin, supportEmail);
 
