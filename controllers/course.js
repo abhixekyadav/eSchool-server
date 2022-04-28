@@ -1,10 +1,10 @@
-import AWS from "aws-sdk";
-import { nanoid } from "nanoid";
-import Course from "../models/course";
-import Completed from "../models/completed";
-import slugify from "slugify";
-import { readFileSync } from "fs";
-import User from "../models/user";
+const AWS = require("aws-sdk");
+const { nanoid } = require("nanoid");
+const Course = require("../models/course");
+const Completed = require("../models/completed");
+const slugify = require("slugify");
+const { readFileSync } = require("fs");
+const User = require("../models/user");
 
 const awsConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,

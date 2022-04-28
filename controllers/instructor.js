@@ -1,7 +1,7 @@
-import User from "../models/user";
-import Course from "../models/course";
-import Qa from "../models/qa";
-import queryString from "query-string";
+const User = require("../models/user");
+const Course = require("../models/course");
+const Qa = require("../models/qa");
+const queryString = require("query-string");
 
 export const makeInstructor = async (req, res) => {
   try {

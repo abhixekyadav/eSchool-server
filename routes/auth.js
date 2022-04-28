@@ -3,17 +3,17 @@ const express = require("express");
 const router = express.Router();
 
 // middleware
-import { requireSignin } from "../middlewares";
+const { requireSignin } = require("../middlewares");
 
 // controllers
-import {
+const {
   register,
   login,
   logout,
   currentUser,
   forgotPassword,
   resetPassword,
-} from "../controllers/auth";
+} = require("../controllers/auth");
 
 router.post("/register", register);
 router.post("/login", login);

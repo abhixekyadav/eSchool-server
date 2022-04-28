@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+const bcrypt = require("bcrypt");
 
 export const hashPassword = (password) => {
   return new Promise((resolve, reject) => {

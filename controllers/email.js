@@ -1,7 +1,6 @@
-import Support from "../models/support";
-// import AWS from "aws-sdk";
-import SES from "aws-sdk/clients/ses";
-import { supportEmailParams } from "../utils/email";
+const Support = require("../models/support");
+const SES = require("aws-sdk/clients/ses");
+const { supportEmailParams } = require("../utils/email");
 
 // aws config
 const ses = new SES({

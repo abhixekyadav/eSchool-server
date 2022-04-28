@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 // middlewares
-import { requireSignin } from "../middlewares";
+const { requireSignin } = require("../middlewares");
 // controller
-import { makeAuthor, currentAuthor } from "../controllers/author";
+const { makeAuthor, currentAuthor } = require("../controllers/author");
 
 router.post("/make-author", requireSignin, makeAuthor);
 router.get("/current-author", requireSignin, currentAuthor);

@@ -3,10 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 // middleware
-import { requireSignin } from "../middlewares";
+const { requireSignin } = require("../middlewares");
 
 // controllers
-import {
+const {
   makeInstructor,
   // getAccountStatus,
   currentInstructor,
@@ -14,7 +14,7 @@ import {
   studentCount,
   // instructorBalance,
   // instructorPayoutSettings,
-} from "../controllers/instructor";
+} = require("../controllers/instructor");
 
 router.post("/make-instructor", requireSignin, makeInstructor);
 // router.post("/get-account-status", requireSignin, getAccountStatus);

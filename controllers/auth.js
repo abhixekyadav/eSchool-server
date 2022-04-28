@@ -1,13 +1,12 @@
-import User from "../models/user";
-import jwt from "jsonwebtoken";
-// import AWS from "aws-sdk";
-import SES from "aws-sdk/clients/ses";
-import { nanoid } from "nanoid";
-import {
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const SES = require("aws-sdk/clients/ses");
+const { nanoid } = require("nanoid");
+const {
   completeRegistrationParams,
   forgotPasswordParams,
-} from "../utils/email";
-import { hashPassword, comparePassword } from "../utils/auth";
+} = require("../utils/email");
+const { hashPassword, comparePassword } = require("../utils/auth");
 
 // aws config
 const ses = new SES({

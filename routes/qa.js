@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 // middlewares
-import { requireSignin } from "../middlewares";
+const { requireSignin } = require("../middlewares");
 // controller
-import {
+const {
   create,
   lessonQa,
   updateLessonQa,
@@ -22,7 +22,7 @@ import {
   deleteLessonQaByInstructor,
   markQaResolvedByInstructor,
   markQaUnresolvedByInstructor,
-} from "../controllers/qa";
+} = require("../controllers/qa");
 
 // qa for user dashboard
 router.get("/user/qas", requireSignin, getUserQas);

@@ -3,15 +3,15 @@ const express = require("express");
 const router = express.Router();
 
 // middlewares
-import { requireSignin, isAdmin } from "../middlewares";
+const { requireSignin, isAdmin } = require("../middlewares");
 // controller
-import {
+const {
   currentAdmin,
   listUsers,
   // refreshUserStatus,
   allIssues,
   removeIssue,
-} from "../controllers/admin";
+} = require("../controllers/admin");
 
 router.get("/current-admin", requireSignin, currentAdmin);
 router.get("/admin/users", requireSignin, isAdmin, listUsers);

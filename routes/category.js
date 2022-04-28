@@ -3,15 +3,15 @@ const express = require("express");
 const router = express.Router();
 
 // middlewares
-import { requireSignin, isAdmin } from "../middlewares";
+const { requireSignin, isAdmin } = require("../middlewares");
 // controller
-import {
+const {
   create,
   read,
   update,
   remove,
   categories,
-} from "../controllers/category";
+} = require("../controllers/category");
 
 router.post("/category", requireSignin, isAdmin, create);
 router.get("/category", read);

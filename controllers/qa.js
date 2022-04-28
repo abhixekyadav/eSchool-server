@@ -1,6 +1,6 @@
-import Qa from "../models/qa";
-import Course from "../models/course";
-import slugify from "slugify";
+const Qa = require("../models/qa");
+const Course = require("../models/course");
+const slugify = require("slugify");
 
 export const create = async (req, res) => {
   try {

@@ -1,12 +1,12 @@
 const express = require("express");
-import formidable from "express-formidable";
+const formidable = require("express-formidable");
 
 const router = express.Router();
 
 // middlewares
-import { requireSignin, isAuthor, isAdmin } from "../middlewares";
+const { requireSignin, isAuthor, isAdmin } = require("../middlewares");
 // controller
-import {
+const {
   uploadImage,
   create,
   list,
@@ -22,7 +22,7 @@ import {
   prevPost,
   nextPost,
   listForAdmin,
-} from "../controllers/post";
+} = require("../controllers/post");
 
 // image
 router.post("/post/upload-image", requireSignin, isAuthor, uploadImage);

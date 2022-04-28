@@ -1,4 +1,4 @@
-import Support from "../models/support";
+const Support = require("../models/support");
 
 export const issues = async (req, res) => {
   try {

@@ -1,11 +1,10 @@
-import User from "../models/user";
-import Post from "../models/post";
-import Category from "../models/category";
-// import AWS from "aws-sdk";
-import S3 from "aws-sdk/clients/s3";
-import slugify from "slugify";
-import { nanoid } from "nanoid";
-import { readFileSync } from "fs";
+const User = require("../models/user");
+const Post = require("../models/post");
+const Category = require("../models/category");
+const S3 = require("aws-sdk/clients/s3");
+const slugify = require("slugify");
+const { nanoid } = require("nanoid");
+const { readFileSync } = require("fs");
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,

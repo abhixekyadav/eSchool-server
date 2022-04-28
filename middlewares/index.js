@@ -1,6 +1,6 @@
-import User from "../models/user";
-import Course from "../models/course";
-import expressJwt from "express-jwt";
+const User = require("../models/user");
+const Course = require("../models/course");
+const expressJwt = require("express-jwt");
 
 // UnauthorizedError, TokenExpiredError
 export const requireSignin = expressJwt({

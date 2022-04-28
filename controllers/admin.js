@@ -2,8 +2,7 @@ const User = require("../models/user");
 const Course = require("../models/course");
 const Support = require("../models/support");
 const SES = require("aws-sdk/clients/ses");
-// import AWS from "aws-sdk";
-import { enrollIssueResolved } from "../utils/email";
+const enrollIssueResolved = require("../utils/email");
 
 // aws config
 const ses = new SES({
