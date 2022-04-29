@@ -18,13 +18,13 @@ const { hashPassword, comparePassword } = require("../utils/auth");
 // });
 
 // aws config new
-// const awsConfig = {
-//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//   region: process.env.AWS_REGION,
-//   apiVersion: process.env.AWS_API_VERSION,
-// };
-// const ses = new AWS.SES(awsConfig);
+const awsConfig = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+  apiVersion: process.env.AWS_API_VERSION,
+};
+const ses = new AWS.SES(awsConfig);
 
 exports.register = async (req, res) => {
   try {
@@ -131,15 +131,15 @@ exports.forgotPassword = async (req, res) => {
     const params = forgotPasswordParams(email, shortCode);
     // send
 
-    // const emailSent = ses.sendEmail(params).promise();
-    // emailSent
-    //   .then((data) => {
-    //     console.log(data);
-    //     res.json({ ok: true });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    const emailSent = ses.sendEmail(params).promise();
+    emailSent
+      .then((data) => {
+        console.log(data);
+        res.json({ ok: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } catch (err) {
     console.log(err);
   }
