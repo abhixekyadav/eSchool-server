@@ -32,15 +32,15 @@ exports.supportEmail = async (req, res) => {
     // prepare for email
     const params = supportEmailParams(url, name, email, message);
     // send
-    const emailSent = ses.sendEmail(params).promise();
-    emailSent
-      .then((data) => {
-        console.log(data);
-        res.json({ ok: true });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const emailSent = ses.sendEmail(params).promise();
+    // emailSent
+    //   .then((data) => {
+    //     console.log(data);
+    //     res.json({ ok: true });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   } catch (err) {
     console.log(err);
   }
