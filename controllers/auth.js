@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const SES = require("aws-sdk/clients/ses");
+// const SES = require("aws-sdk/clients/ses");
+const AWS = require("aws-sdk");
 const { nanoid } = require("nanoid");
 const {
   completeRegistrationParams,
@@ -8,13 +9,22 @@ const {
 } = require("../utils/email");
 const { hashPassword, comparePassword } = require("../utils/auth");
 
-// aws config
-const ses = new SES({
+// aws config old
+// const ses = new SES({
+//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   region: process.env.AWS_REGION,
+//   apiVersion: process.env.AWS_API_VERSION,
+// });
+
+// aws config new
+const awsConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
   apiVersion: process.env.AWS_API_VERSION,
-});
+};
+const ses = new AWS.SES(awsConfig);
 
 exports.register = async (req, res) => {
   try {
