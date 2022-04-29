@@ -14,7 +14,7 @@ const s3 = new S3({
   version: process.env.AWS_API_VERSION,
 });
 
-export const uploadImage = async (req, res) => {
+exports.uploadImage = async (req, res) => {
   try {
     const { image } = req.body;
     if (!image) return res.status(400).send("No image");
@@ -50,7 +50,7 @@ export const uploadImage = async (req, res) => {
   }
 };
 
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
   try {
     const { title, body, categories } = req.body;
     // check if title is taken
@@ -87,7 +87,7 @@ export const create = async (req, res) => {
   }
 };
 
-export const list = async (req, res) => {
+exports.list = async (req, res) => {
   let posts = await Post.find({ published: true })
     .select("-body")
     .sort({ createdAt: -1 })
@@ -100,7 +100,7 @@ export const list = async (req, res) => {
   res.json(posts);
 };
 
-export const listForAdmin = async (req, res) => {
+exports.listForAdmin = async (req, res) => {
   let posts = await Post.find({})
     .select("-body")
     .populate({
@@ -112,12 +112,12 @@ export const listForAdmin = async (req, res) => {
   res.json(posts);
 };
 
-export const postsByAuthor = async (req, res) => {
+exports.postsByAuthor = async (req, res) => {
   let posts = await Post.find({ postedBy: req.user._id }).exec();
   res.json(posts);
 };
 
-export const read = async (req, res) => {
+exports.read = async (req, res) => {
   //   console.log(req.params);
   const post = await Post.findOne({ slug: req.params.slug })
     .populate("categories")
@@ -126,7 +126,7 @@ export const read = async (req, res) => {
   res.json(post);
 };
 
-export const update = async (req, res) => {
+exports.update = async (req, res) => {
   try {
     const { postId, title, body, categories } = req.body;
     // find post
@@ -163,7 +163,7 @@ export const update = async (req, res) => {
   }
 };
 
-export const remove = async (req, res) => {
+exports.remove = async (req, res) => {
   try {
     const { postId } = req.params;
     // find post
@@ -181,7 +181,7 @@ export const remove = async (req, res) => {
   }
 };
 
-export const publishPost = async (req, res) => {
+exports.publishPost = async (req, res) => {
   try {
     const { postId } = req.params;
     // find post
@@ -204,7 +204,7 @@ export const publishPost = async (req, res) => {
   }
 };
 
-export const unpublishPost = async (req, res) => {
+exports.unpublishPost = async (req, res) => {
   try {
     const { postId } = req.params;
     // find post
@@ -227,7 +227,7 @@ export const unpublishPost = async (req, res) => {
   }
 };
 
-export const prevPost = async (req, res) => {
+exports.prevPost = async (req, res) => {
   const { postId } = req.params;
   try {
     let post = await Post.find({ _id: { $lt: postId } })
@@ -243,7 +243,7 @@ export const prevPost = async (req, res) => {
   }
 };
 
-export const nextPost = async (req, res) => {
+exports.nextPost = async (req, res) => {
   try {
     const { postId } = req.params;
     // console.log(postId);
@@ -265,7 +265,7 @@ export const nextPost = async (req, res) => {
  * by admin
  */
 
-export const removeByAdmin = async (req, res) => {
+exports.removeByAdmin = async (req, res) => {
   try {
     const { postId } = req.params;
     const removed = await Post.findByIdAndRemove(postId);
@@ -276,7 +276,7 @@ export const removeByAdmin = async (req, res) => {
   }
 };
 
-export const publishPostByAdmin = async (req, res) => {
+exports.publishPostByAdmin = async (req, res) => {
   try {
     let post = await Post.findByIdAndUpdate(
       req.params.postId,
@@ -291,7 +291,7 @@ export const publishPostByAdmin = async (req, res) => {
   }
 };
 
-export const unpublishPostByAdmin = async (req, res) => {
+exports.unpublishPostByAdmin = async (req, res) => {
   try {
     let post = await Post.findByIdAndUpdate(
       req.params.postId,

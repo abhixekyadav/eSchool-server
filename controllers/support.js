@@ -1,6 +1,6 @@
 const Support = require("../models/support");
 
-export const issues = async (req, res) => {
+exports.issues = async (req, res) => {
   try {
     const list = await Support.find({ postedBy: req.user._id })
       .populate("postedBy", "_id name email")
@@ -12,7 +12,7 @@ export const issues = async (req, res) => {
   }
 };
 
-export const markResolved = async (req, res) => {
+exports.markResolved = async (req, res) => {
   try {
     // check if user owns the issue to udpate
     const issue = await Support.findById(req.body.issueId).exec();
@@ -31,7 +31,7 @@ export const markResolved = async (req, res) => {
   }
 };
 
-export const removeIssue = async (req, res) => {
+exports.removeIssue = async (req, res) => {
   try {
     // check if user owns the issue to udpate
     const issue = await Support.findById(req.params.issueId).exec();

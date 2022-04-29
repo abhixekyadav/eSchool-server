@@ -2,7 +2,7 @@ const Qa = require("../models/qa");
 const Course = require("../models/course");
 const slugify = require("slugify");
 
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
   try {
     const { title, userId } = req.body;
     if (userId != req.user._id) return res.status(400).send("Unauthorized");
@@ -24,7 +24,7 @@ export const create = async (req, res) => {
   }
 };
 
-export const lessonQa = async (req, res) => {
+exports.lessonQa = async (req, res) => {
   const { lessonId } = req.params;
   const qas = await Qa.find({ lessonId })
     .sort({ createdAt: -1 })
@@ -39,7 +39,7 @@ export const lessonQa = async (req, res) => {
   res.json(qas);
 };
 
-export const updateLessonQa = async (req, res) => {
+exports.updateLessonQa = async (req, res) => {
   try {
     // console.log("update_lesson_question", req.body);
     let poster = req.body.postedBy._id;
@@ -55,7 +55,7 @@ export const updateLessonQa = async (req, res) => {
   }
 };
 
-export const deleteLessonQa = async (req, res) => {
+exports.deleteLessonQa = async (req, res) => {
   try {
     const { lessonId, postedBy } = req.params;
 
@@ -70,7 +70,7 @@ export const deleteLessonQa = async (req, res) => {
   }
 };
 
-export const addAnswer = async (req, res) => {
+exports.addAnswer = async (req, res) => {
   // console.log("ADD ANSWER", req.body);
   // return;
   try {
@@ -94,7 +94,7 @@ export const addAnswer = async (req, res) => {
   }
 };
 
-export const editAnswer = async (req, res) => {
+exports.editAnswer = async (req, res) => {
   try {
     const { _id, content } = req.body;
     let poster = req.body.postedBy._id;
@@ -117,7 +117,7 @@ export const editAnswer = async (req, res) => {
   }
 };
 
-export const deleteAnswer = async (req, res) => {
+exports.deleteAnswer = async (req, res) => {
   try {
     const { answerId, postedBy } = req.params;
     // console.table({ answerId, postedBy });
@@ -138,42 +138,7 @@ export const deleteAnswer = async (req, res) => {
   }
 };
 
-// export const deleteAnswerByInstructor = async (req, res) => {
-//   try {
-//     const { answerId } = req.params;
-//     console.table({ answerId });
-
-//     // find the qa based on answer id = courseId
-//     const qa = await Qa.findOne({
-//       answers: { $elemMatch: { _id: answerId } },
-//     })
-//       .select("courseId")
-//       .exec();
-//     // console.log("FOUDN QA BASED ON ANSWER_ID => ", qa.courseId);
-//     // find the current instructor and all his courses = courses array
-//     const course = await Course.findById(qa.courseId)
-//       .select("instructor")
-//       .exec();
-//     // console.log("COURSE => ", course);
-//     // console.log('REQ.USER._ID', req.user._id)
-//     if (course.instructor != req.user._id)
-//       return res.status(400).send("Unauthorized");
-
-//     let answer = await Qa.findOneAndUpdate(
-//       { "answers._id": answerId },
-//       {
-//         $pull: { answers: { _id: answerId } },
-//       }
-//     ).exec();
-//     // console.log("remove lesson from this course => ", course);
-//     res.json({ ok: true });
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(400).send("Unauthorized");
-//   }
-// };
-
-export const markQaResolved = async (req, res) => {
+exports.markQaResolved = async (req, res) => {
   try {
     const { questionId, postedBy } = req.body;
     if (postedBy != req.user._id) return res.status(400).send("Unauthorized");
@@ -188,7 +153,7 @@ export const markQaResolved = async (req, res) => {
   }
 };
 
-export const markQaUnresolved = async (req, res) => {
+exports.markQaUnresolved = async (req, res) => {
   try {
     const { questionId, postedBy } = req.body;
     if (postedBy != req.user._id) return res.status(400).send("Unauthorized");
@@ -203,7 +168,7 @@ export const markQaUnresolved = async (req, res) => {
   }
 };
 
-export const getUserQas = async (req, res) => {
+exports.getUserQas = async (req, res) => {
   try {
     const qas = await Qa.find({ postedBy: req.user._id })
       .populate({
@@ -220,7 +185,7 @@ export const getUserQas = async (req, res) => {
   }
 };
 
-export const updateQuestion = async (req, res) => {
+exports.updateQuestion = async (req, res) => {
   try {
     // console.log("update_user_question", req.body);
     // return;
@@ -237,7 +202,7 @@ export const updateQuestion = async (req, res) => {
   }
 };
 
-export const getInstructorQas = async (req, res) => {
+exports.getInstructorQas = async (req, res) => {
   try {
     const courses = await Course.find({ instructor: req.user._id })
       .select("_id")
@@ -263,7 +228,7 @@ export const getInstructorQas = async (req, res) => {
  * by instructor
  */
 
-export const deleteAnswerByInstructor = async (req, res) => {
+exports.deleteAnswerByInstructor = async (req, res) => {
   try {
     const { answerId } = req.params;
     // console.table({ answerId });
@@ -300,7 +265,7 @@ export const deleteAnswerByInstructor = async (req, res) => {
 
 // CONTINUE WORKING ON DELETE ANYONE'S QA BY INSTRUCTOR
 
-export const deleteLessonQaByInstructor = async (req, res) => {
+exports.deleteLessonQaByInstructor = async (req, res) => {
   try {
     const { questionId } = req.params;
 
@@ -323,7 +288,7 @@ export const deleteLessonQaByInstructor = async (req, res) => {
   }
 };
 
-export const markQaResolvedByInstructor = async (req, res) => {
+exports.markQaResolvedByInstructor = async (req, res) => {
   try {
     const { questionId } = req.body;
 
@@ -347,7 +312,7 @@ export const markQaResolvedByInstructor = async (req, res) => {
   }
 };
 
-export const markQaUnresolvedByInstructor = async (req, res) => {
+exports.markQaUnresolvedByInstructor = async (req, res) => {
   try {
     const { questionId } = req.body;
 
