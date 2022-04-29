@@ -12,7 +12,7 @@ const ses = new SES({
   apiVersion: process.env.AWS_API_VERSION,
 });
 
-export const currentAdmin = async (req, res) => {
+exports.currentAdmin = async (req, res) => {
   try {
     let user = await User.findById(req.user._id).select("-password").exec();
     if (!user.role.includes("Admin")) {
@@ -27,7 +27,7 @@ export const currentAdmin = async (req, res) => {
   }
 };
 
-export const listUsers = async (req, res) => {
+exports.listUsers = async (req, res) => {
   const users = await User.find({})
     .select("-password")
     .populate("courses", "_id slug name")
@@ -35,14 +35,14 @@ export const listUsers = async (req, res) => {
   res.json(users);
 };
 
-export const allIssues = async (req, res) => {
+exports.allIssues = async (req, res) => {
   const all = await Support.find()
     .populate("postedBy", "_id name email")
     .exec();
   res.json(all);
 };
 
-export const removeIssue = async (req, res) => {
+exports.removeIssue = async (req, res) => {
   try {
     const resolved = await Support.findByIdAndRemove(req.params.issueId).exec();
     // console.log("__resolved__", resolved);

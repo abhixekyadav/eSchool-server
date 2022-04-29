@@ -10,7 +10,7 @@ const ses = new SES({
   apiVersion: process.env.AWS_API_VERSION,
 });
 
-export const supportEmail = async (req, res) => {
+exports.supportEmail = async (req, res) => {
   try {
     const { url, name, email, message } = req.body;
     // save new issue in db

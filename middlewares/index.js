@@ -3,13 +3,13 @@ const Course = require("../models/course");
 const expressJwt = require("express-jwt");
 
 // UnauthorizedError, TokenExpiredError
-export const requireSignin = expressJwt({
+exports.requireSignin = expressJwt({
   getToken: (req) => req.cookies.token,
   secret: process.env.JWT_SECRET,
   algorithms: ["HS256"],
 });
 
-export const isAdmin = async (req, res, next) => {
+exports.isAdmin = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).exec();
 
@@ -23,7 +23,7 @@ export const isAdmin = async (req, res, next) => {
   }
 };
 
-export const isInstructor = async (req, res, next) => {
+exports.isInstructor = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).exec();
 
@@ -37,7 +37,7 @@ export const isInstructor = async (req, res, next) => {
   }
 };
 
-export const isAuthor = async (req, res, next) => {
+exports.isAuthor = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).exec();
 
@@ -51,22 +51,7 @@ export const isAuthor = async (req, res, next) => {
   }
 };
 
-/**
-export const canEditDeleteCourse = async (req, res, next) => {
-  try {
-    const course = await Course.findOne({ slug: req.params.slug }).exec();
-    if (course.instructor.toString() !== req.user._id.toString()) {
-      res.sendStatus(403);
-    } else {
-      next();
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
- */
-
-export const isEnrolled = async (req, res, next) => {
+exports.isEnrolled = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).exec();
     const course = await Course.findOne({ slug: req.params.slug }).exec();

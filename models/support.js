@@ -27,5 +27,4 @@ const supportSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// module.exports = mongoose.model("Category", supportSchema);
-export default mongoose.model("Support", supportSchema);
+module.exports = mongoose.model("Support", supportSchema);

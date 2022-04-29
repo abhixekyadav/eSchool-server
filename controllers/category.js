@@ -1,7 +1,7 @@
 const Category = require("../models/category");
 const slugify = require("slugify");
 
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
   try {
     const { name } = req.body;
     // console.log(name);
@@ -13,7 +13,7 @@ export const create = async (req, res) => {
   }
 };
 
-export const read = async (req, res) => {
+exports.read = async (req, res) => {
   try {
     let category = await Category.findOne({ slug: req.params.slug }).exec();
     res.json(category);
@@ -22,7 +22,7 @@ export const read = async (req, res) => {
   }
 };
 
-export const update = async (req, res) => {
+exports.update = async (req, res) => {
   try {
     const { name } = req.body;
     const category = await Category.findOneAndUpdate(
@@ -37,7 +37,7 @@ export const update = async (req, res) => {
   }
 };
 
-export const remove = async (req, res) => {
+exports.remove = async (req, res) => {
   try {
     // console.log(req.params.slug);
     let category = await Category.findOneAndRemove({
@@ -50,7 +50,7 @@ export const remove = async (req, res) => {
   }
 };
 
-export const categories = async (req, res) => {
+exports.categories = async (req, res) => {
   try {
     const categories = await Category.find().sort({ createdAt: -1 }).exec();
     res.json(categories);

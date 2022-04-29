@@ -1,4 +1,4 @@
-export const completeRegistrationParams = (email, jwtLink) => {
+exports.completeRegistrationParams = (email, jwtLink) => {
   return {
     Source: process.env.EMAIL_FROM,
     Destination: {
@@ -29,7 +29,7 @@ export const completeRegistrationParams = (email, jwtLink) => {
   };
 };
 
-export const forgotPasswordParams = (email, shortCode) => {
+exports.forgotPasswordParams = (email, shortCode) => {
   return {
     Source: process.env.EMAIL_FROM,
     Destination: {
@@ -60,7 +60,7 @@ export const forgotPasswordParams = (email, shortCode) => {
   };
 };
 
-export const supportEmailParams = (url, name, email, message) => {
+exports.supportEmailParams = (url, name, email, message) => {
   return {
     Source: process.env.EMAIL_FROM,
     Destination: {
@@ -94,7 +94,7 @@ export const supportEmailParams = (url, name, email, message) => {
   };
 };
 
-export const enrollIssueResolved = (name, email) => {
+exports.enrollIssueResolved = (name, email) => {
   return {
     Source: process.env.EMAIL_FROM,
     Destination: {

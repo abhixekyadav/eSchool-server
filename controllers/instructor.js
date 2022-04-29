@@ -3,7 +3,7 @@ const Course = require("../models/course");
 const Qa = require("../models/qa");
 const queryString = require("query-string");
 
-export const makeInstructor = async (req, res) => {
+exports.makeInstructor = async (req, res) => {
   try {
     // 1. find user from db
     const user = await User.findById(req.user._id).exec();
@@ -23,7 +23,7 @@ export const makeInstructor = async (req, res) => {
   }
 };
 
-export const currentInstructor = async (req, res) => {
+exports.currentInstructor = async (req, res) => {
   try {
     let user = await User.findById(req.user._id).select("-password").exec();
     if (!user.role.includes("Instructor")) {
@@ -38,7 +38,7 @@ export const currentInstructor = async (req, res) => {
   }
 };
 
-export const instructorCourses = async (req, res) => {
+exports.instructorCourses = async (req, res) => {
   try {
     const courses = await Course.find({ instructor: req.user._id })
       .sort({ createdAt: -1 })
@@ -50,7 +50,7 @@ export const instructorCourses = async (req, res) => {
   }
 };
 
-export const studentCount = async (req, res) => {
+exports.studentCount = async (req, res) => {
   try {
     // console.log("req.body.courseId", req.body.courseId);
     const users = await User.find({ courses: req.body.courseId })
@@ -63,7 +63,7 @@ export const studentCount = async (req, res) => {
   }
 };
 
-export const questionCount = async (req, res) => {
+exports.questionCount = async (req, res) => {
   try {
     const courses = await Course.find({ instructor: req.user._id })
       .select("_id")

@@ -1,6 +1,6 @@
 const User = require("../models/user");
 
-export const makeAuthor = async (req, res) => {
+exports.makeAuthor = async (req, res) => {
   try {
     let updated = await User.findByIdAndUpdate(
       req.user._id,
@@ -16,7 +16,7 @@ export const makeAuthor = async (req, res) => {
   }
 };
 
-export const currentAuthor = async (req, res) => {
+exports.currentAuthor = async (req, res) => {
   const user = await User.findById(req.user._id).exec();
 
   if (!user.role.includes("Author")) {

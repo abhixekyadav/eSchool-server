@@ -16,7 +16,7 @@ const ses = new SES({
   apiVersion: process.env.AWS_API_VERSION,
 });
 
-export const register = async (req, res) => {
+exports.register = async (req, res) => {
   try {
     // console.log(req.body);
     const { name, email, password } = req.body;
@@ -50,7 +50,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     // console.log(req.body);
     const { email, password } = req.body;
@@ -83,7 +83,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const currentUser = async (req, res) => {
+exports.currentUser = async (req, res) => {
   try {
     let user = await User.findById(req.user._id).select("-password").exec();
     // console.log(user);
@@ -93,7 +93,7 @@ export const currentUser = async (req, res) => {
   }
 };
 
-export const logout = (req, res) => {
+exports.logout = (req, res) => {
   try {
     res.clearCookie("token");
     return res.json({ message: "Signout success!" });
@@ -102,7 +102,7 @@ export const logout = (req, res) => {
   }
 };
 
-export const forgotPassword = async (req, res) => {
+exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     // console.log(email);
@@ -134,7 +134,7 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res) => {
+exports.resetPassword = async (req, res) => {
   try {
     const { email, code, newPassword } = req.body;
     // // ----test

@@ -57,4 +57,4 @@ const qaSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Qa", qaSchema);
+module.exports = mongoose.model("Qa", qaSchema);
