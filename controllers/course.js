@@ -118,7 +118,7 @@ exports.uploadVideo = async (req, res) => {
     }
 
     const { video } = req.files;
-    // console.log(video);
+    console.log(video);
     if (!video) return res.status(400).send("No video");
 
     // video params
