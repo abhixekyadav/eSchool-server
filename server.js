@@ -38,6 +38,12 @@ app.get("/api/csrf-token", (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
 
+app.get("/.well-known/pki-validation/:file", (req, res) => {
+  res.send(
+    "6C325585324E08B0F1E57B82DD63104793E395445106EF0C59D3139B3DC8B1F6comodoca.coma966a8993344c76"
+  );
+});
+
 // port
 const port = process.env.PORT || 8000;
 
