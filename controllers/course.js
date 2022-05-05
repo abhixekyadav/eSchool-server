@@ -117,27 +117,36 @@ exports.uploadVideo = async (req, res) => {
     if (req.user._id != req.params.instructorId) {
       return res.status(400).send("Unauthorized");
     }
+    const { video } = req.files;
 
-    if (!video) return res.status(400).send("No video");
+    const { data } = await axios.post(
+      `http://eschoolserver-env.eba-hjip9cn7.ap-south-1.elasticbeanstalk.com/api/course/video-upload/${req.user._id}`,
+      video
+    );
 
-    // video params
-    const params = {
-      Bucket: "eschoolbucket",
-      Key: `${nanoid()}.${video.type.split("/")[1]}`,
-      Body: readFileSync(video.path),
-      ACL: "public-read",
-      ContentType: video.type,
-    };
+    console.log("VIDEO UPLOADED =====> ", data);
 
-    // upload to s3
-    S3.upload(params, (err, data) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(400);
-      }
-      // console.log(data);
-      res.send(data);
-    });
+    // if (!video) return res.status(400).send("No video");
+
+    // // video params
+    // const params = {
+    //   Bucket: "eschoolbucket",
+    //   Key: `${nanoid()}.${video.type.split("/")[1]}`,
+    //   Body: readFileSync(video.path),
+    //   ACL: "public-read",
+    //   ContentType: video.type,
+    // };
+
+    // // upload to s3
+    // S3.upload(params, (err, data) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.sendStatus(400);
+    //   }
+    //   // console.log(data);
+    //   res.send(data);
+    // });
+    res.send(data);
   } catch (err) {
     console.log(err);
   }
