@@ -40,7 +40,7 @@ router.put("/course/:slug", requireSignin, update);
 router.get("/course/:slug", read);
 router.post(
   "/course/video-upload/:instructorId",
-  // requireSignin,
+  requireSignin,
   formidable(),
   uploadVideo
 );
