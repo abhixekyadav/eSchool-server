@@ -27,7 +27,13 @@ mongoose
   .catch((err) => console.log("DB CONNECTION ERR => ", err));
 
 // apply middlewares
-app.use(cors());
+app.use(
+  cors({
+    // origin: "http://localhost:3000",
+    origin: "https://e-school.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(morgan("dev"));

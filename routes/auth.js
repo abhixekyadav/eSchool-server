@@ -19,6 +19,7 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", logout);
 router.get("/current-user", requireSignin, currentUser);
+
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password", resetPassword);
 

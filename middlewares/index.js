@@ -2,7 +2,7 @@ const User = require("../models/user");
 const Course = require("../models/course");
 const expressJwt = require("express-jwt");
 
-// UnauthorizedError, TokenExpiredError
+// UnauthorizedError, TokenExpiredError;
 exports.requireSignin = expressJwt({
   getToken: (req) => req.cookies.token,
   secret: process.env.JWT_SECRET,

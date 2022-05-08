@@ -5,7 +5,6 @@ const Completed = require("../models/completed");
 const slugify = require("slugify");
 const { readFileSync } = require("fs");
 const User = require("../models/user");
-const axios = require("axios");
 
 const awsConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,

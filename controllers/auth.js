@@ -8,6 +8,7 @@ const {
   forgotPasswordParams,
 } = require("../utils/email");
 const { hashPassword, comparePassword } = require("../utils/auth");
+const { json } = require("express");
 
 // aws config old
 // const ses = new SES({
@@ -82,9 +83,10 @@ exports.login = async (req, res) => {
     user.passwordResetCode = undefined;
     // without httpOnly, javascript will get access to cookie in browser
     // so to protect token use true
+
     res.cookie("token", token, {
       httpOnly: true,
-      // secure: true // only works on https
+      //secure: true, // only works on https
     });
 
     res.json(user);
