@@ -29,8 +29,9 @@ mongoose
 // apply middlewares
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    // origin: "https://e-school.vercel.app",
+    // origin: "http://localhost:3000",
+    // origin: "*",
+    origin: "https://e-school.vercel.app",
     credentials: true,
   })
 );
